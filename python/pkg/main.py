@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 from p1 import *
 
 if __name__ == "__main__":
