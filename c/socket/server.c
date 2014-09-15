@@ -29,12 +29,11 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    if ((client_sock = listen(server_sock, MAXPENDING)) < 0)
+    if (listen(server_sock, MAXPENDING) < 0)
     {
         printf("listen error.\n");
         return -1;
     }
-
 
     while(1)
     {
