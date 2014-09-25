@@ -1,0 +1,100 @@
+#+TITLE:     用 org-mode 写 Beamer
+#+AUTHOR:    yubo y00186361
+#+EMAIL:     kvmaker.yubo@huawei.com
+#+DATE:      Thu Sep 25 17:12:15 2014
+#+LATEX_CLASS: cn-beamer
+#+BEAMER_FRAME_LEVEL: 2
+#+LaTeX_CLASS_OPTIONS: [xcolor=svgnames,bigger,presentation]
+#+OPTIONS: LaTeX:dvipng
+
+* 介绍
+** 综述
+- org-mode 模板
+- beamer 的结构
+- beamer 的设置
+
+* 方法
+
+** 一页简单的幻灯片
+这页幻灯片以符号列表的形式排版一些简单的文字：
+- 第一，往往是最重要的一点！
+- 第一点演示了如何给文字加上 Beamer 特有的 /alert/ 命令，以高亮文字。
+以上的列表也可以设为编号的，并且可以带子列表。
+
+** 一页更复杂的幻灯片
+这页幻灯片演示了生成 Beamer 的 block 的方法。下面展示一个带有标题的 block：
+*** Org mode 为什么能提高效率? 					  :B_theorem:
+    :PROPERTIES:
+    :BEAMER_env: theorem
+    :END:
+    - org mode 意味着不必要记住 \LaTeX 的命令；
+    - 基于 ascii 纯文本，便于修改阅读。
+    - Emacs!
+
+    \hfill \(\qed\)
+    
+** 分栏（Columns）
+
+*** 一个 block 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+    - 这页幻灯片包含两栏：
+    - 左栏没有标题，只包含文字；
+    - 右栏包含图片并内嵌在一个 @example@ block 里。
+
+*** 插图 						    :BMCOL:B_example:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: example
+    :END:
+    #+ATTR_LATEX: width=.6\textwidth
+    #+CAPTION: 示例插图
+    [[file:emacs.png]]
+
+** 代码
+   :PROPERTIES:
+   :BEAMER_envargs: [t]
+   :END:
+   
+*** Octave 代码							      :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: .6
+    :END:
+    
+#+begin_src octave :results output
+A = [1 2 ; 3 4]
+b = [1; 1];
+x = A\b
+#+end_src
+	
+*** 输出结果 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :BEAMER_envargs: <2->
+    :END:
+
+#+results: octaveexample
+#+begin_example
+A =
+
+   1   2
+   3   4
+
+x =
+
+  -1
+   1
+
+#+end_example
+
+* 结论
+
+** 总结
+   - org 是一个不可思议的时间管理工具
+   - @但@ 它也一个写作和准备演讲的利器
+   - Beamer 是一个非常强大的制作幻灯片的 \LaTeX{} 宏包
+   - 两者联手，谁与争风！
+
